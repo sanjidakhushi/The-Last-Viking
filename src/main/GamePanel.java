@@ -1,22 +1,22 @@
 package main;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JPanel;
+
 import inputs.KeyboardInputs;
 import inputs.Mouseinputs;
-
+import static main.Game.GAME_HEIGHT;
+import static main.Game.GAME_WIDTH;
 
 public class GamePanel extends JPanel{
 	
 	private Mouseinputs mouseInputs;
-	private int xDelta = 100 , yDelta= 100;
-	
-	
-	
-	public GamePanel() {
-		
+	private Game game;
+	public GamePanel(Game game) {	
 		mouseInputs= new Mouseinputs(this);
-		
+		this.game = game;
+		setPanelSize();
 		addKeyListener(new KeyboardInputs(this));
 		addMouseListener(mouseInputs) ;
 		addMouseMotionListener(mouseInputs);
@@ -24,29 +24,26 @@ public class GamePanel extends JPanel{
 		 setFocusable(true);        
 	     requestFocusInWindow();
 		
-		
 	}
 	
-	public void changeXDelta(int value) {
-		this.xDelta += value;
-		repaint();
+	private void setPanelSize() {
+		Dimension size = new Dimension(GAME_WIDTH,GAME_HEIGHT);
+		setPreferredSize(size);
+	    System.out.println("size: "+ GAME_WIDTH +":"+ GAME_HEIGHT);
 	}
-	public void changeYDelta(int value) {
-		this.yDelta += value;
-		repaint();
-		
+
+	public void updateGame() {
+	
 	}
 	
-	public void setRectPos(int x, int y) {
-		this.xDelta = x;
-		this.yDelta = y;
-		repaint();
-		
-	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		
-		g.fillRect(xDelta, yDelta, 200, 50);
+		game.render(g);
+		
+		}	
+	public Game getGame() {
+		return game;
 	}
-
+	
 }
