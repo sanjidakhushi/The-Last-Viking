@@ -34,24 +34,27 @@ public final static int GAME_HEIGHT = TILES_SIZE * TILES_IN_HEIGHT;
 	}
 	
 	private void initClasses() {
-
-    player = new Player(200 , 200);
     levelManager = new LevelManager(this);
+    player = new Player(200 , 200, (int)(64* SCALE), (int)(40* SCALE));
+    player.loadLvlData(levelManager.getCurrentLevel().getLevelData());
 	}
 
 	private void startGameLoop() {
 		gameThread = new Thread(this);
 		gameThread.start();
 	}
-public void update() {
-	player.update();
-	levelManager.update();
+	
+    public void update() {
+    	levelManager.update();
+    	player.update();
+	
 }
 
 public void render(Graphics g) {
 
 	levelManager.draw(g);
 	player.render(g);
+	
 }
 
 	@Override
