@@ -23,8 +23,8 @@ public class VolumeButton extends PauseButton {
 		buttonX = x + width / 2;
 		this.x = x;
 		this.width = width;
-		minX = x;
-		maxX = x + width;
+		minX = x + VOLUME_WIDTH /2 ;
+		maxX = x - VOLUME_WIDTH /2 ;
 		loadImgs();
 		
 	}
