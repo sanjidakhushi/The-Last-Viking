@@ -3,6 +3,7 @@ package ui;
 import java.awt.Rectangle;
 
 public class PauseButton {
+
 	protected int x, y, width, height;
 	protected Rectangle bounds;
 
@@ -57,5 +58,5 @@ public class PauseButton {
 	public void setBounds(Rectangle bounds) {
 		this.bounds = bounds;
 	}
-	
+
 }
